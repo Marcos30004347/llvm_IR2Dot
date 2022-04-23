@@ -1,0 +1,17 @@
+#include "llvm/Passes/PassBuilder"
+
+
+
+
+namespace {
+  class Hello : public FunctionPass {
+  public:
+    // Print out the names of functions in the LLVM IR being optimized.
+    virtual bool runOnFunction(Function &F) {
+      cerr << "Hello: " << F.getName() << "\n";
+      return false;
+    }
+  };
+}
+
+FunctionPass *createHelloPass() { return new Hello(); }
